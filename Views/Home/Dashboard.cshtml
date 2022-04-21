@@ -21,20 +21,32 @@
                 <td>@ViewBag.UserId</td>
                 @if (ViewBag.UserId == i.UserId)
                 {
-                    <td>Delete</td>
+                    <td>
+                        <form action="/deletewedding" method="post">
+                            <input type="hidden" name="WeddingId" value="@i.WeddingId">
+                            <input type="submit" class="btn btn-link" value="Delete">
+                        </form>
+                        
+                    </td>
                 }
                 else
                 {
                     if (i.GuestList.Any(g => g.UserId == ViewBag.UserId))
                     {
-                        <td>Un-RSVP</td>
+                        <td>
+                            <form action="/removeguest" method="post">
+                            <input type="hidden" name="WeddingId" value="@i.WeddingId">
+                            <input type="hidden" name="UserId" value="@ViewBag.UserId">
+                            <input type="submit" class="btn btn-link" value="Un-RSVP">
+                            </form>
+                        </td>
                     }
                     else
                     {
                         <td>
                             <form action="/addguest" method="post">
-                            <input type="hidden" value="@i.WeddingId">
-                            <input type="hidden" value="@ViewBag.UserId">
+                            <input type="hidden" name="WeddingId" value="@i.WeddingId">
+                            <input type="hidden" name="UserId" value="@ViewBag.UserId">
                             <input type="submit" class="btn btn-link" value="RSVP">
                             </form>
                         </td>

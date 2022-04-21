@@ -138,11 +138,34 @@ namespace WeddingPlanner.Controllers
         [HttpPost("/addguest")]
         public IActionResult AddGuest(Managment newManagment)
         {
-            // newManagment.UserId = (int)HttpContext.Session.GetInt32("UserId");
             _context.Add(newManagment);
             _context.SaveChanges();
             return RedirectToAction("Dashboard");
         }
+
+
+
+
+        [HttpPost("/removeguest")]
+        public IActionResult RemoveGuest(Managment newManagment)
+        {
+            Managment removeManagment = _context.Managments.SingleOrDefault(a => a.WeddingId == newManagment.WeddingId && a.UserId == newManagment.UserId);
+            _context.Remove(removeManagment);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+
+
+
+        [HttpPost("/deletewedding")]
+        public IActionResult DeleteWedding(Wedding newManagment)
+        {
+            Wedding removeWedding = _context.Weddings.SingleOrDefault(a => a.WeddingId == newManagment.WeddingId);
+            _context.Remove(removeWedding);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard");
+        }
+
 
 
 
