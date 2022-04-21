@@ -1,0 +1,21 @@
+@model Wedding
+<form action="/users/logout" method="post" class="mt-4 login d-flex">
+    <a href="/dashboard" class="mr-4">Dashboard</a>
+    <input type="submit" class="btn btn-danger" value="Logout">
+</form>
+<h2>Plan your Wedding</h2>
+<form class="mt-5" action="/wedding/create/post" method="post">
+    <label class="d-block mt-2">Wedder One: </label>
+    <span class="text-danger d-block" asp-validation-for="WedderOne"></span>
+    <input asp-for="WedderOne">
+        <label class="d-block mt-2">Wedder Two: </label>
+    <span class="text-danger d-block" asp-validation-for="WedderTwo"></span>
+    <input asp-for="WedderTwo">
+    <label class="d-block mt-2">Date: </label>
+    <span class="text-danger d-block" asp-validation-for="DateOfWedding"></span>
+    <input asp-for="DateOfWedding">
+        <label class="d-block mt-2" >Wedding Address: </label>
+    <span class="text-danger d-block" asp-validation-for="WeddingAddress"></span>
+    <input asp-for="WeddingAddress">
+    <input type="submit" class="btn btn-success mt-4 d-block" value="Create">
+</form>

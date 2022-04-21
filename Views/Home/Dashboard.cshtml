@@ -1,0 +1,48 @@
+@model List<Wedding>
+<form action="/users/logout" method="post" class="mt-4 mb-4 login">
+    <input type="submit" class="btn btn-danger" value="Logout">
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Wedding</th>
+            <th scope="col">Date</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td><a href="/wedding/view/@i.WeddingId">@i.WedderOne & @i.WedderTwo</a></td>
+                <td>@i.DateOfWedding.ToString("MMMM-dd-yyyy")</td>
+                <td>@ViewBag.UserId</td>
+                @if (ViewBag.UserId == i.UserId)
+                {
+                    <td>Delete</td>
+                }
+                else
+                {
+                    if (i.GuestList.Any(g => g.UserId == ViewBag.UserId))
+                    {
+                        <td>Un-RSVP</td>
+                    }
+                    else
+                    {
+                        <td>
+                            <form action="/addguest" method="post">
+                            <input type="hidden" value="@i.WeddingId">
+                            <input type="hidden" value="@ViewBag.UserId">
+                            <input type="submit" class="btn btn-link" value="RSVP">
+                            </form>
+                        </td>
+                    }
+                }
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/create/wedding" class="btn btn-primary">New Wedding</a>

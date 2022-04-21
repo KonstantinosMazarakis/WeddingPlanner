@@ -1,0 +1,14 @@
+<form action="/users/logout" method="post" class="mt-4 login d-flex">
+    <a href="/dashboard" class="mr-4">Dashboard</a>
+    <input type="submit" class="btn btn-danger" value="Logout">
+</form>
+<h2>@ViewBag.WeddingInfo.WedderOne and @ViewBag.WeddingInfo.WedderTwo's Wedding</h2>
+<p>@ViewBag.WeddingInfo.DateOfWedding</p>
+<p>@ViewBag.WeddingInfo.WeddingAddress</p>
+<ul>Guests:
+    @foreach ( var i in ViewBag.List.GuestList)
+    {
+        <li>@i.User.FirstName @i.User.LastName</li>
+    }
+
+</ul>
